@@ -1,0 +1,15 @@
+android
+ios
+yarn.lock
+package.json
+tsconfig.json
+metro.config.js
+babel.config.js
+app.json
+.gitignore
+.gitattributes
+.eslintrc.js
+.editorconfig
+.buckconfiig
+README.md
+.watchmanconfig
