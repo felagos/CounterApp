@@ -3,15 +3,15 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 interface IProps {
 	title: string;
-	handleCounter: () => void;
+	onPress: () => void;
 	position: 'left' | 'right';
 }
 
-export const FabButton = ({title, handleCounter, position}: IProps) => {
+export const FabButton = ({title, onPress, position}: IProps) => {
 	const positionFab =
 		position === 'right' ? styles.fabLocationRight : styles.fabLocationLeft;
 	return (
-		<TouchableOpacity style={positionFab} onPress={handleCounter}>
+		<TouchableOpacity style={positionFab} onPress={onPress}>
 			<View style={styles.fab}>
 				<Text style={styles.fabItem}>{title}</Text>
 			</View>

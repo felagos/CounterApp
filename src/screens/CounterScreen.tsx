@@ -16,12 +16,8 @@ export const CounterScreen = () => {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Contador: {counter}</Text>
-			<FabButton title="+1" handleCounter={handleAddCounter} position="right" />
-			<FabButton
-				title="-1"
-				handleCounter={handleSubtractCounter}
-				position="left"
-			/>
+			<FabButton title="+1" onPress={handleAddCounter} position="right" />
+			<FabButton title="-1" onPress={handleSubtractCounter} position="left" />
 		</View>
 	);
 };
