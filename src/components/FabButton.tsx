@@ -24,7 +24,10 @@ export const FabButton = ({title, onPress, position}: IProps) => {
 	);
 
 	const fabIOS = () => (
-		<TouchableOpacity style={[styles.fabLocation, positionFab]}>
+		<TouchableOpacity
+			style={[styles.fabLocation, positionFab]}
+			activeOpacity={0.75}
+			onPress={onPress}>
 			{fabContent()}
 		</TouchableOpacity>
 	);
