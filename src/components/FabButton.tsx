@@ -8,10 +8,11 @@ interface IProps {
 }
 
 export const FabButton = ({title, onPress, position}: IProps) => {
-	const positionFab =
-		position === 'right' ? styles.fabLocationRight : styles.fabLocationLeft;
+	const positionFab = position === 'right' ? styles.right : styles.left;
 	return (
-		<TouchableOpacity style={positionFab} onPress={onPress}>
+		<TouchableOpacity
+			style={[styles.fabLocation, positionFab]}
+			onPress={onPress}>
 			<View style={styles.fab}>
 				<Text style={styles.fabItem}>{title}</Text>
 			</View>
@@ -33,14 +34,14 @@ const styles = StyleSheet.create({
 		fontSize: 25,
 		fontWeight: 'bold',
 	},
-	fabLocationRight: {
+	fabLocation: {
 		position: 'absolute',
 		bottom: 25,
-		right: 25,
 	},
-	fabLocationLeft: {
-		position: 'absolute',
-		bottom: 25,
+	left: {
 		left: 25,
+	},
+	right: {
+		right: 25,
 	},
 });
