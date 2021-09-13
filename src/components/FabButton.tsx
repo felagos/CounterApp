@@ -1,5 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+	StyleSheet,
+	Text,
+	View,
+	TouchableNativeFeedback,
+	Platform,
+	TouchableOpacity,
+} from 'react-native';
 
 interface IProps {
 	title: string;
@@ -9,15 +16,30 @@ interface IProps {
 
 export const FabButton = ({title, onPress, position}: IProps) => {
 	const positionFab = position === 'right' ? styles.right : styles.left;
-	return (
-		<TouchableOpacity
-			style={[styles.fabLocation, positionFab]}
-			onPress={onPress}>
-			<View style={styles.fab}>
-				<Text style={styles.fabItem}>{title}</Text>
-			</View>
+
+	const fabContent = () => (
+		<View style={styles.fab}>
+			<Text style={styles.fabItem}>{title}</Text>
+		</View>
+	);
+
+	const fabIOS = () => (
+		<TouchableOpacity style={[styles.fabLocation, positionFab]}>
+			{fabContent()}
 		</TouchableOpacity>
 	);
+
+	const fabAndroid = () => (
+		<View style={[styles.fabLocation, positionFab]}>
+			<TouchableNativeFeedback
+				onPress={onPress}
+				background={TouchableNativeFeedback.Ripple('#28425B', false, 30)}>
+				{fabContent()}
+			</TouchableNativeFeedback>
+		</View>
+	);
+
+	return Platform.OS === 'android' ? fabAndroid() : fabIOS();
 };
 
 const styles = StyleSheet.create({
@@ -34,7 +56,6 @@ const styles = StyleSheet.create({
 		},
 		shadowOpacity: 0.32,
 		shadowRadius: 5.46,
-
 		elevation: 9,
 	},
 	fabItem: {
